@@ -307,6 +307,35 @@ void MainWindow::createTab(){
         newScintilla->setLexer(globalLexer); // 设置词法分析器（可能是您在其他地方定义的）
         tabWidget->addTab(newScintilla, "New Tab"); // 将新的 QsciScintilla 对象添加到标签页控件中，并设置标签页标题为 "New Tab"
 
+        // 添加关闭按钮到新标签页
+        QWidget* tabWidgetContainer = new QWidget();
+        QHBoxLayout* tabLayout = new QHBoxLayout(tabWidgetContainer);
+        QLabel* tabLabel = new QLabel("New Tab");
+        QPushButton* closeButton = new QPushButton("✖"); // 使用✖作为关闭按钮的文本，可以替换为图标
+
+        // 设置关闭按钮的固定大小（例如：20x20 像素）
+        closeButton->setFixedSize(20, 20);
+
+        tabLayout->addWidget(tabLabel);
+        tabLayout->addWidget(closeButton);
+        tabLayout->setContentsMargins(0, 0, 0, 0);
+        tabLayout->setSpacing(0);
+
+        tabWidget->setTabText(tabWidget->count() - 1, "");
+        tabWidget->tabBar()->setTabButton(tabWidget->count() - 1, QTabBar::LeftSide, tabWidgetContainer);
+
+        // 连接按钮的点击事件到关闭标签页的槽函数
+        connect(closeButton, &QPushButton::clicked, [this, newScintilla]() {
+            // 获取当前标签页的索引
+            int currentIndex = tabWidget->indexOf(newScintilla);
+
+            // 关闭标签页
+            tabWidget->removeTab(currentIndex);
+
+            // 删除相应的 QsciScintilla 对象
+            delete newScintilla;
+        });
+
         // 切换到最新的这个 tab
         tabWidget->setCurrentIndex(tabWidget->count() - 1);
 

@@ -1,5 +1,4 @@
 #include "tree.h"
-#include "ui_tree.h"
 #include"QTreeWidgetItem"
 #include"QFileInfoList"
 #include"QDir"
