@@ -91,7 +91,23 @@ MainWindow::MainWindow(QWidget *parent)
     textEdit->setMinimumWidth(0);
 
     // 创建标签页用来存储页面
+    // 创建标签页用来存储页面
     tabWidget = new QTabWidget;
+
+    // 添加一个按钮到标签栏的最右侧
+    QPushButton* addButton = new QPushButton("➕", tabWidget);
+    addButton->setFixedSize(30, 30); // 设置按钮大小
+
+    // 设置标签栏的大小策略，以便按钮有足够的空间
+    tabWidget->tabBar()->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+    // 连接按钮的点击事件到新建标签页的槽函数
+    connect(addButton, &QPushButton::clicked, this, &MainWindow::createTab);
+
+    // 在标签栏上创建一个标签，并将按钮放在标签的左侧
+    tabWidget->addTab(new QWidget(), "");
+    tabWidget->tabBar()->setTabButton(0, QTabBar::LeftSide, addButton);
+
 
     createTab();
 
