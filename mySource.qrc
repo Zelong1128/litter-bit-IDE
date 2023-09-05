@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/bold.png</file>
+        <file>icon/copy.png</file>
+        <file>icon/cut.png</file>
+        <file>icon/newfile.png</file>
+        <file>icon/openfile.png</file>
+        <file>icon/paste.png</file>
+        <file>icon/saveas.png</file>
+        <file>icon/savefile.png</file>
+        <file>icon/seek.png</file>
+        <file>icon/underline.png</file>
+        <file>icon/editor.png</file>
+        <file>icon/fontSet.png</file>
+    </qresource>
+</RCC>
